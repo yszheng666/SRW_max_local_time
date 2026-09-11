@@ -1,12 +1,12 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,letterpaper,reqno]{amsart}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage[sc]{mathpazo}
+\usepackage[margin=30mm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
 \usepackage{microtype}
 \usepackage{needspace}
-\usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage{bookmark}
 \numberwithin{equation}{section}
 \newtheorem{theorem}{Theorem}[section]
@@ -22,18 +22,21 @@
 \DeclareMathOperator{\diag}{diag}
 \allowdisplaybreaks[1]
 \setlength{\emergencystretch}{2em}
-\setcounter{tocdepth}{2}
+\raggedbottom
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@maketitle}{\global\topskip42\p@\relax}{\global\topskip0\p@\relax}{}{%
+  \PackageError{SRW-max-local-time}{Cannot adjust title placement}{Check the amsart version.}}
+\makeatother
 \hypersetup{pdftitle={Tightness of the maximum local time of planar simple random walk},pdfsubject={Probability theory; random walk; maximum local time}}
-\title{Tightness of the maximum local time\\of planar simple random walk}
+\title[Maximum local time of planar simple random walk]{Tightness of the maximum local time of planar simple random walk}
 \author{}
 \date{}
 \begin{document}
-\maketitle
-\vspace{-2em}
-
 \begin{abstract}
 Let $M_n$ be the largest number of visits to a site by planar simple random walk before step $n$. We prove that $\sqrt{M_n}-(\log n-\log\log n)/\sqrt\pi$ is tight. We also obtain tightness at the first exit from a disk and quantitative, non-optimal tail bounds. The proof compares complete excursion records with a critical geometric Galton--Watson process. For the lower bound, we count sites with high occupation whose nested equilibrium averages satisfy a continuous barrier. A Gaussian density comparison under exponential tilting gives the one-point estimate, while the common average path controls nearby pairs. A one-sided Gaussian comparison gives the upper bound. Successive disk exits amplify the lower bound, and an exit-time comparison yields the result at deterministic times.
 \end{abstract}
+\maketitle
 
 \section{Introduction}\label{sec:intro}
 The maximum local time of a random walk measures the greatest concentration of visits along its path. For recurrent walks, repeated returns produce large local times, while nearby sites share much of the same excursion history. The leading order of the maximum and its fluctuations therefore involve different aspects of this dependence.
@@ -115,6 +118,13 @@ The discrete Gaussian free field provides another description of logarithmic spa
 
 \subsection{Organization}\label{sec:organization}
 Section~\ref{sec:mainproofs} derives the main theorems from the two spatial estimates. Section~\ref{sec:records} constructs and compares the excursion records, and Section~\ref{sec:tools} collects the branching-process and Gaussian inputs. Section~\ref{sec:upper} proves the upper bound. Section~\ref{sec:events} defines the lower-bound event and proves its first-moment estimate. Sections~\ref{sec:tworoot} and~\ref{sec:second} establish the pair estimates and the lower bound by the second-moment method.
+
+\subsection{AI-assisted proof development and verification status}
+\label{subsec:ai-declaration}
+
+Generative AI was used to produce the mathematical proof draft presented in this manuscript. OpenAI Codex also assisted with manuscript preparation and organization. The extent of human mathematical checking and the status of Lean~4 formalization are not documented in this version. No completed human verification or Lean~4 formal verification is claimed here.
+
+This version provides a dated record of the current draft through GitHub. It should be read as work in progress, with the statements and proofs subject to correction. Any future claim of formal verification will specify the results covered, their correspondence with the manuscript, and any remaining assumptions or unproved dependencies.
 
 \section{Proofs of Theorems~\ref{thm:disk} and~\ref{thm:time}}\label{sec:mainproofs}
 The following two propositions contain the spatial estimates needed for both theorems. The upper bound is proved in Section~\ref{sec:upper}. The positive-probability lower bound is proved in Sections~\ref{sec:events}--\ref{sec:second}. We first derive the main theorems from them.
