@@ -122,9 +122,9 @@ Section~\ref{sec:mainproofs} derives the main theorems from the two spatial esti
 \subsection{AI-assisted proof development and verification status}
 \label{subsec:ai-declaration}
 
-Generative AI was used to produce the mathematical proof draft presented in this manuscript. OpenAI Codex also assisted with manuscript preparation and organization. The extent of human mathematical checking and the status of Lean~4 formalization are not documented in this version. No completed human verification or Lean~4 formal verification is claimed here.
+Generative AI was used to produce the mathematical proof draft presented in this manuscript. OpenAI Codex also assisted with manuscript preparation, organization and the accompanying Lean~4 development. The repository now supplies a conditional Lean formalization of the main tightness and tail claims. Six literature input families remain explicit hypotheses of the Lean theorem, as described in Appendix~\ref{sec:formalization}. No completed independent human mathematical verification is claimed.
 
-This version provides a dated record of the current draft through GitHub. It should be read as work in progress, with the statements and proofs subject to correction. Any future claim of formal verification will specify the results covered, their correspondence with the manuscript, and any remaining assumptions or unproved dependencies.
+The checksum-bound manuscript source is stored in \texttt{source/}\allowbreak\texttt{SRW\_max\_local\_time.tex}. The present version retains its mathematical body with the repository's publication front matter and this verification-status subsection. The source-to-Lean registry identifies the covered statements and their dependencies; the revised proofs include the additional terminal comparisons, root-return estimate and Bessel hitting argument. Formal acceptance of those declarations is distinguished from a line-by-line verification of the manuscript's prose.
 
 \section{Proofs of Theorems~\ref{thm:disk} and~\ref{thm:time}}\label{sec:mainproofs}
 The following two propositions contain the spatial estimates needed for both theorems. The upper bound is proved in Section~\ref{sec:upper}. The positive-probability lower bound is proved in Sections~\ref{sec:events}--\ref{sec:second}. We first derive the main theorems from them.
@@ -320,7 +320,7 @@ f(x)=f(b)\{1+O(A/B)\}.
 Because the error is relative to $f(b)$, this estimate also controls the harmonic measure of a specified exit point, uniformly over the choice of exit point.
 
 \subsection{Construction of reference marks and entrance-law comparison}\label{sec:marks}
-We next choose a reference law for the visits made after an entrance into the terminal annulus. Its equilibrium starting measure makes the mean occupation constant over the observation set. Let $K\subset B(b,a)$, $2a<m-H-2$, and $D=B(b,em+H)$. Set
+We next choose a reference law for the visits made after an entrance into the terminal annulus. Its equilibrium starting measure makes the mean occupation constant over the observation set. Let $K\subset B(b,a)$, $0<a\le m/2$, $0\le H\le m/8$, and $D=B(b,em+H)$, with $m$ sufficiently large. Set
 \[
 \alpha=g\log\frac{em+H}{m-H}.
 \]
@@ -330,20 +330,49 @@ If $\alpha\operatorname{cap}_D(K)\le1$, define a reference mark by taking a kill
 \end{equation}
 and adding a zero mark of mass $1-\alpha\operatorname{cap}_D(K)$. We retain only visits to $K$, or a specified projected record after the first entrance into $K$. By~\eqref{eq:2.4}, the expected number of visits to each $z\in K$ is exactly $\alpha$. Enlarging $K$ and then restricting the observation gives the same mark law on the smaller set, by the first-hitting decomposition and symmetry.
 
-For a true entrance point $z$ with $|z-b|=m-H+O(1)$, let $h_z(v)$ denote the distribution of the first entrance into $K$ before exit from $D$. Uniformly over all positive entrance atoms,
+For a true entrance point $z$ with $m-H-1\le|z-b|\le m-H+1$, let $h_z(v)$ denote the probability of first entering $K$ at $v$ before exit from $D$. We first establish a uniform comparison that does not require $a/m$ to tend to zero.
+
+Put $L=B(b,m-H)$. For each $v\in K$, the function $x\mapsto h_x(v)$ is nonnegative and harmonic in $D\setminus K$, with value zero outside $D$. Any two points of the entrance layer can be joined by a bounded number of overlapping balls of radius proportional to $m$, whose fixed enlargements lie in $D\setminus B(b,m/2)$. The Harnack inequality from Section~\ref{sec:annuli} along this chain gives $h_x(v)\asymp h_z(v)$ throughout the layer, uniformly also when the entrance probability is small. The equilibrium measure of $L$ is supported on its inner unit boundary layer, so this comparison applies on its support.
+
+The equilibrium sweeping identity is
+\[
+\sum_{x\in L}e_L^D(x)h_x(v)=e_K^D(v).
+\]
+Indeed, write $h_\cdot(v)=G_D\nu$, where $\nu=(I-P_D)h_\cdot(v)$ is supported on $K$. Summing against either $e_L^D$ or $e_K^D$ gives $\sum_{y\in K}\nu(y)$ by~\eqref{eq:2.4} and symmetry. The latter sum against $e_K^D$ equals $e_K^D(v)$, since $h_y(v)=\mathbf1_{\{y=v\}}$ for $y\in K$.
+Also,~\eqref{eq:2.6} gives $G_D(b,x)=\alpha+O(m^{-1})$ on the support of $e_L^D$. Evaluating~\eqref{eq:2.4} at $b$ therefore yields
+\[
+\operatorname{cap}_D(L)^{-1}=\alpha+O(m^{-1}),\qquad
+\tfrac12\le\alpha\operatorname{cap}_D(L)\le2.
+\]
+Combining sweeping with the Harnack comparison gives fixed constants $c_0,C_0>0$ such that
+\[
+c_0\alpha e_K^D(v)\le h_z(v)\le C_0\alpha e_K^D(v),
+\qquad v\in K.
+\]
+All constants here are independent of $K,a,m,H,z$ in the stated range. The multiplicative inequalities also cover zero equilibrium charges.
+
+For the refined relative estimate, suppose additionally that $2a<m-H-2$. Uniformly over all positive entrance atoms,
 \begin{equation}\label{eq:2.15}
 h_z(v)=\alpha e_K^D(v)(1+O(\epsilon)),\quad
 \epsilon=C\frac{a+1}{m}\log\frac ma,
 \end{equation}
-To prove this comparison, let $f(v)=G_D(z,v)$. By~\eqref{eq:2.6}, $f(v)=\alpha+O((a+1)/m)$ on $B(b,2a)$. Let $q(v)=\mathbb P_v(\tau_D<H_K)$. At radius $2a$, avoiding the entire $a$-ball gives, by~\eqref{eq:2.10}, the lower bound $q(v)\ge c/\log(m/a)$. First hitting and symmetry imply, on that outer boundary,
+First suppose $a\le m/4$ and put $A=a\vee a_0$, where $a_0\ge1$ is a fixed sufficiently large radius for~\eqref{eq:2.10}. We take $m$ large enough that $a_0\le m/4$. Let $f(v)=G_D(z,v)$. By~\eqref{eq:2.6}, $f(v)=\alpha+O((a+1)/m)$ on the outer unit boundary layer of $B(b,2A)$; the fixed $a_0$ is absorbed into the constant. Let $q(v)=\mathbb P_v(\tau_D<H_K)$. There, avoiding the entire $A$-ball gives, by~\eqref{eq:2.10}, the lower bound $q(v)\ge c/\log(m/A)\ge c/\log(m/a)$. First hitting and symmetry imply, on that outer boundary,
 \[
 G_{D\setminus K}(z,v)
 =f(v)-\mathbb E_v[f(S_{H_K});H_K<\tau_D]
 =\alpha q(v)+O((a+1)/m).
 \]
-Both functions vanish on $K$ and are harmonic in the punctured ball. Applying the maximum principle to their difference propagates the relative estimate to every exterior neighbor of $K$. Summing the last step into $K$ proves~\eqref{eq:2.15}.
+Both functions vanish on $K$ and are harmonic in the punctured ball. Applying the maximum principle to their difference propagates the relative estimate to every exterior neighbor of $K$. Summing the last step into $K$ proves~\eqref{eq:2.15} in this range. If $m/4<a\le m/2$, the uniform atom comparison above gives the same relative estimate after increasing the constant, because
+\[
+\frac{a+1}{m}\log\frac ma\ge\frac{\log2}{4}.
+\]
+In particular this proves~\eqref{eq:2.15} throughout its stated separated range without requiring its error to be small.
 
-After the first entrance into $K$, the true and reference paths have the same killed transition law. Thus~\eqref{eq:2.15} compares the entire retained record with an error independent of its number of visits. If the zero mass is at least $1/2$, the zero atom has the same relative comparison. The pre-entrance path is not part of this observation; conditioning on a specified final exit point will be treated separately in Section~\ref{sec:tworoot}.
+After the first entrance into $K$, the true and reference paths have the same killed transition law. Thus~\eqref{eq:2.15} compares the entire retained record with an error independent of its number of visits. If the reference zero mass is at least $1/2$, the zero atom has the same relative comparison, as detailed in Section~\ref{sec:recordcomparison}. The uniform comparison also extends to the zero atom: by~\eqref{eq:2.10}, avoiding $B(b,m/2)$ until exit from $D$ has probability bounded below by a fixed positive constant from the entrance layer. Hence the actual zero mass is uniformly positive. If $\alpha\operatorname{cap}_D(K)\le1/2$, the reference zero mass is at least $1/2$, which supplies the upper comparison. Consequently the full actual and reference mark laws, denoted by $P_z$ and $Q$, satisfy
+\[
+c\,Q(E)\le P_z(E)\le C\,Q(E)
+\]
+for every mark event $E$, uniformly for $0<a\le m/2$. These inequalities survive every specified projection of the retained record. The pre-entrance path is not part of this observation; conditioning on a specified final exit point will be treated separately in Section~\ref{sec:tworoot}.
 
 \subsection{Generating functions and moments of discrete marks}\label{sec:markformulas}
 The generating function of a reference mark provides both the Gaussian comparison for the upper bound and the covariance needed for the lower bound. For a finite observation set $A\subset K$, let $G=G_D|_{A\times A}$, $Q=\operatorname{diag}(v_z-1)$, and let $Y$ be the visit vector of one reference mark. Then
@@ -424,13 +453,17 @@ In a parent segment, the next entrance into the inner ball competes with exit fr
 \end{equation}
 uniformly in the actual position. The reference offspring law is therefore the critical geometric law $\mathbb P(\xi=l)=2^{-(l+1)}$, $l\ge0$.
 
-At the terminal level,~\eqref{eq:2.15} compares every positive projected mark. To include the zero mark, let $q$ be the positive mass of the reference mark and let $\delta$ bound the relative entrance-law error. If $Q$ is the reference mark law and $P_z$ the actual law from an admissible entrance $z$, then
+At the terminal level, first consider the complete mark before any further projection. Assume explicitly that its reference positive mass is $q=\alpha\operatorname{cap}_D(K)\le1/2$, as will hold in the applications below. In the separated range,~\eqref{eq:2.15} compares every positive complete mark. To include the zero mark, let $\delta$ bound the relative entrance-law error. If $Q$ is the reference mark law and $P_z$ the actual law from an admissible entrance $z$, then
 \[
 |P_z(0)-Q(0)|\le\delta q,\qquad
 \left|\frac{P_z(0)}{Q(0)}-1\right|
 \le\frac{\delta q}{1-q}.
 \]
-The applications below have $q\le1/2$. Hence the same relative error applies to the full terminal law, uniformly over admissible entrances.
+Hence the same relative error applies to the full terminal law, uniformly over admissible entrances. To pass to a two-sided exponential comparison, write $\epsilon_0=(a+1)m^{-1}\log(m/a)$. For $a\le m/4$, the separation $2a<m-H-2$ holds for large $m$, and $|P_z(E)-Q(E)|\le\delta Q(E)$ with $\delta=C_1\epsilon_0$. If $\delta\le1/2$, use $1-\delta\ge e^{-2\delta}$ and $1+\delta\le e^\delta$. If $\delta>1/2$, the fixed positive lower comparison from Section~\ref{sec:marks} gives the lower exponential bound after increasing the constant, since $\epsilon_0>1/(2C_1)$; the upper bound still follows from $1+\delta\le e^\delta$. For $m/4<a\le m/2$, use the fixed two-sided comparison directly and the bound $\epsilon_0\ge(\log2)/4$. We have therefore proved, throughout the full half-radius range,
+\[
+e^{-C\epsilon_0}Q(E)\le P_z(E)\le e^{C\epsilon_0}Q(E).
+\]
+This comparison includes the zero mark and does not assume that the terminal relative error is small.
 
 We propagate the terminal comparison backwards through the tree, integrating each exit position before applying the comparison for the preceding child. At level $j$ write $U_j(x,dz)$ for the kernel of entering $B(b,A_{j+1})$ before exiting $B(b,B_{j-1})$, and $V_j(x,dy)$ for the competing exit kernel. Their total masses satisfy~\eqref{eq:2.23} both at the initial position on the $A_j$ boundary and at a return position on the $B_j$ boundary. Let $S_j(z;r,d\xi)$ be the joint kernel of a child record $r$ and its exit position $\xi$. Suppose inductively that its marginal is bounded above and below by $e^{\pm\eta(r)}Q_j(r)$, uniformly in $z$, where $Q_j$ is the reference subtree law. For a parent started at $x$, the probability of exactly $l$ ordered child records $r_1,\ldots,r_l$ is
 \begin{equation}\label{eq:record-kernel}
@@ -468,7 +501,22 @@ If $R\mathbf1\le\rho<1$, integrate from the final factor backwards. The first-en
 \begin{equation}\label{eq:2.25}
 \mathbb P_0(J=j,E)\le \rho^{j-1}e^\eta\mathbf P_j^{\rm GW,mark}(E).
 \end{equation}
-The bound applies in particular to the position-dependent root levels with $\rho=1-(k+K)^{-1}$.
+The fixed shift in the return bound can be chosen uniformly over root levels. Write $H=H_0$, $a_*=A_{k+1}=\rho_{k+1}-H$ and $c_*=B_k=\rho_k+H$. For a root center $b\in D_R$ and an exit point still inside $D_R$, comparison with $B(b,2R)$ and the potential-kernel stopping argument give, once $a_*$ exceeds a fixed threshold,
+\[
+\mathbb P_{\rm exit}(\tau_R<H_{B(b,a_*)})
+\ge\frac{\log(c_*/a_*)-4/a_*}{\log(2R/a_*)}.
+\]
+Here the inverse-square remainder in~\eqref{eq:2.5} can be bounded by $g/a_*$ beyond a fixed radius. The unit boundary overshoot and this remainder contribute at most $3g/a_*$ to the stopped potential; including its error at the starting point gives the displayed numerator error $4/a_*$. This fixes the coefficient independently of the root level.
+Since $H\ge8$, $H\le a_*$ and $c_*\ge e(a_*+H)$, the buffer absorbs that error:
+\[
+\log(c_*/a_*)\ge1+\log(1+H/a_*)
+\ge1+\frac{H}{a_*+H}\ge1+\frac4{a_*}.
+\]
+Also $R\le32e\rho_0$ and $a_*\ge\rho_{k+1}/2$ give
+\[
+\log(2R/a_*)\le k+\log32+2\log2+2.
+\]
+Choosing a fixed constant $K\ge\log32+2\log2+3$ proves $R\mathbf1\le1-(k+K)^{-1}$, and hence~\eqref{eq:2.25} with this return factor. The radius threshold and $H\le a_*$ follow from the standing choice $m\gg H_0$ with $m$ large; no condition growing with the total depth is needed.
 
 For the lower bound, use root centers in $R/4\le|b|\le R/3$. Here $\rho_0\in[R/(32e),R/32]$, the starting point is outside the root, and the outer ball lies strictly in $D_R$. Estimate the first entrance in a disk centered at $b$ that contains the origin and lies inside $D_R$, and estimate nonreturn using a disk that contains $D_R$. Equation~\eqref{eq:2.10} gives $I\mathbf1\ge c_1$ and $\inf_\xi q(\xi)\ge c_2$, with fixed positive constants. Taking $j=1$ in~\eqref{eq:root-record-kernel} and using the lower record comparison therefore yields
 \begin{equation}\label{eq:2.26}
@@ -839,13 +887,7 @@ Then $0\le k\le\log t+C$. The block family $\mathscr C_{R,k}$ with this root lev
 \end{equation}
 The origin is outside the root entrance ball and all later observed shells. Thus the pathwise decomposition~\eqref{eq:2.21} and the count comparison~\eqref{eq:2.22} apply for $j\ge k+1$, even if the origin lies inside the root outer ball.
 
-To bound the root returns, start at an exit point of $B(b_C,B_k)$ and compare with the containing disk $B(b_C,2R)$. Equation~\eqref{eq:2.10}, with inner radius $A_{k+1}$, gives
-\[
-\mathbb P_{\rm exit}(\tau_R<H_{B(b_C,A_{k+1})})
-\ge\frac{1-O(A_{k+1}^{-1})}{k+C_0}
-\ge\frac1{k+K}.
-\]
-The last inequality holds with a fixed $K$, uniformly for $k\le\log t+C$, since $A_{k+1}\gg m$ and $k/A_{k+1}\to0$. Thus the return bound from Section~\ref{sec:roots} holds with
+For the root returns, the quantitative estimate in Section~\ref{sec:roots} applies with the same fixed $K$: the containing disk is $B(b_C,2R)$, $H_0\ge10$, and $A_{k+1}\ge m-H_0\to\infty$ uniformly over the root levels under consideration. Thus the return bound holds with
 \begin{equation}\label{eq:4.21}
 \varrho_k=1-(k+K)^{-1}.
 \end{equation}
@@ -1233,13 +1275,20 @@ $q_{v_0}(q,a)\asymp a^2v_0^{-3/2}$.
 Consequently, on its first half the bridge has density at most a universal constant relative to BES$(3)$ from $a$. Reversibility,
 $x^2q_s(x,y)=y^2q_s(y,x)$, gives the same domination for the reversed second half relative to BES$(3)$ from $q$.
 
-For an unconditioned BES$(3)$ process,
+For an unconditioned BES$(3)$ process started at $x>0$, write $H_b=\inf\{u\ge0:X_u=b\}$ for $b>0$. Then
 \begin{equation}\label{eq:7.17}
 \mathbb P_x(H_b<\infty)=\min(1,b/x),\qquad
 \mathbb E_x X_s^{-1}
 =x^{-1}\mathbb P_x(\tau_0^{\rm BM}>s)\le C/\sqrt s.
 \end{equation}
-The first identity follows by stopping $1/x$; the second follows from~\eqref{eq:7.15} and Brownian reflection.
+Here is a finite-time derivation of the hitting identity. For $0<b<x$ and $T>0$, let $s_T$ be the survival mass up to time $T$ of Brownian motion started at $x-b$ and killed at zero. The relation $q_T(x,y)=(y/x)p_T^+(x,y)$ extends to the path law by cancellation of the intermediate factors. Restricting the Brownian path to stay above $b$ and shifting by $b$, the killed density has mass $s_T$ and first moment $x-b$. Therefore
+\[
+\mathbb P_x\!\left(\min_{0\le u\le T}X_u\ge b\right)
+=\frac{x-b+b s_T}{x},\qquad
+\mathbb P_x\!\left(\min_{0\le u\le T}X_u<b\right)
+=\frac bx(1-s_T).
+\]
+Reflection gives $s_T=\mathbb P(|N(0,T)|\le x-b)\to0$. Increasing the time horizon gives infinite-time strict lower hitting with probability $b/x$; continuity and squeezing nearby levels give the same probability for hitting the level $b$. Integrating $q_s(x,y)/y$ in~\eqref{eq:7.15} gives the Brownian survival identity in~\eqref{eq:7.17}, and reflection bounds it by $C/\sqrt s$. Finally, if $x<b$, then $\mathbb P_x(X_T\le b)\le b\mathbb E_xX_T^{-1}\to0$, so continuity implies that $b$ is reached almost surely; if $x=b$, it is reached at time zero. This proves both identities in~\eqref{eq:7.17} with all starting positions covered.
 The curved restriction becomes $X(u)\ge(H_*+u)^\gamma$.
 On $[0,H_*]$ its failure has probability at most $CH_*^\gamma/a\le CH_*^{\gamma-1/2}$.
 On $[L,2L]$, $L=2^jH_*$, condition at $L$ and use~\eqref{eq:7.17}; the probability is at most $CL^\gamma\mathbb E_aX_L^{-1}\le CL^{\gamma-1/2}$.
@@ -1805,6 +1854,18 @@ By Cauchy--Schwarz and the pathwise implication~\eqref{eq:5.16},
 \end{equation}
 This proves Proposition~\ref{prop:seed}. Section~\ref{sec:mainproofs} then gives both main theorems. The argument applies to all sufficiently large real $R$, since rounding affects only the bounded difference $T-t$ and the one-step overshoot estimates.
 \qed
+
+\appendix
+\section{Formalization and correspondence}\label{sec:formalization}
+The accompanying Lean development records the statements of this manuscript in a label-to-declaration correspondence. Its main declaration is
+\begin{center}
+\texttt{source\_main\_claims\_internal\_reflection}.
+\end{center}
+It proves the disk and deterministic-time tightness and tail claims, including the inclusive-time tightness variant. This is a conditional formalization with six explicit literature input families: the potential-kernel asymptotic and positive-harmonic relative estimates from~\cite{LL}, the upper and lower critical geometric Galton--Watson barrier estimates from~\cite{GW}, the convex-set normal approximation from~\cite{BE}, and the normalized dyadic-square DGFF maximum estimate from~\cite{BDZ}. These inputs remain parameters of the Lean theorem; they are not counted as internally proved results.
+
+The correspondence concerns the mathematical objects, assumptions, parameter ranges and conclusions. Some auxiliary arguments use different routes. For~\eqref{eq:2.5}, this manuscript cites the explicit potential-kernel constant, whereas Lean identifies it from diagonal potential values using an asymptotic input with an initially unspecified constant. The full-radius comparison in~\eqref{eq:2.24} uses the uniform entrance comparison and the radius split given in Sections~\ref{sec:marks} and~\ref{sec:recordcomparison}; these steps make the lower exponential bound valid even when the relative error is not small. The return estimate in Section~\ref{sec:roots} uses the buffer to absorb the boundary error uniformly in the root level. The finite-time killed-kernel derivation of~\eqref{eq:7.17} follows the route used in Lean.
+
+The machine-readable correspondence is maintained in \texttt{obligations.json}. It distinguishes internally proved statements, statements conditional on the listed inputs, and explicitly external statements. Formal acceptance of a declaration verifies its derivation from its stated assumptions; the correspondence with the manuscript requires a separate check of definitions and scope. The source checksum and correspondence records must therefore be renewed together after a manuscript revision.
 
 \clearpage
 \phantomsection

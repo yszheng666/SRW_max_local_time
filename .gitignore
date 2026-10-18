@@ -15,3 +15,11 @@
 /SRW_max_local_time.synctex.gz
 /SRW_max_local_time.toc
 /SRW_max_local_time.xdv
+
+# Lean build and supplemental manuscript outputs
+formalization/.lake/
+.DS_Store
+output/pdf/*.aux
+output/pdf/*.fdb_latexmk
+output/pdf/*.fls
+output/pdf/*.log
