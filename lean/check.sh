@@ -8,4 +8,4 @@ audit_log=$(mktemp)
 trap 'rm -f "$audit_log"' EXIT HUP INT TERM
 lake env lean SRWTightness/Audit.lean > "$audit_log"
 cat "$audit_log"
-python3 ../verify_certificate.py "$audit_log"
+python3 verify_certificate.py "$audit_log"
