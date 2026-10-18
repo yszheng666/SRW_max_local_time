@@ -17,9 +17,13 @@
 /SRW_max_local_time.xdv
 
 # Lean build and supplemental manuscript outputs
-formalization/.lake/
+lean/.lake/
 .DS_Store
 output/pdf/*.aux
 output/pdf/*.fdb_latexmk
 output/pdf/*.fls
 output/pdf/*.log
+
+# Verification script caches
+__pycache__/
+*.pyc

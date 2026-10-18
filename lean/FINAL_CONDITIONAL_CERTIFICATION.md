@@ -1,3 +1,13 @@
+# Literature-interface bridges (2026-10-18)
+
+The current main entry `source_main_claims_from_literature` includes both internally proved
+literature-to-interface conversions. Full validation passed: 6544 build jobs,
+5001 axiom-audit entries, 2718 rooted modules, standard logical axioms only.
+The six literature results remain explicit hypotheses. See the
+[bridge report](LITERATURE_INTERFACE_BRIDGES_2026-10-18.md).
+
+The previous certification record follows; its counts refer to the earlier main entry.
+
 # 最终条件性认证
 
 状态：完成用户选择的“最小外部假设接口”路线。此处的完成指相对于下列显式文献接口的Lean认证。
@@ -24,7 +34,7 @@ Lean 定义、定理接口和证明均未修改；对应表补充已有直接审
 - `TimeTailClaim`：确定时间模型尾界；
 - `InclusiveTimeTightnessClaim`：闭端点时间约定下的紧性。
 
-声明位置：`formalization/SRWTightness/SourceMainInternalReflection.lean`。
+声明位置：`SRWTightness/SourceMainInternalReflection.lean`。
 本文核心上尾和种子命题已内部推导，未作为外部输入。
 
 ## 保留的精确文献接口

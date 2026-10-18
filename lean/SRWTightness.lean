@@ -3274,3 +3274,5 @@ import SRWTightness.SourceRootReturnUniversal
 import SRWTightness.SourceTerminalOrderedWordAllRadii
 import SRWTightness.UniformProbabilityExponential
 import SRWTightness.SourceComparisonScaleThreshold
+
+import SRWTightness.SourceMainLiteratureInputs

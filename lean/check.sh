@@ -3,7 +3,6 @@ set -eu
 cd "$(dirname "$0")"
 python3 verify_manuscript_correspondence.py
 (cd source && shasum -a 256 -c SHA256SUMS)
-cd formalization
 lake build
 audit_log=$(mktemp)
 trap 'rm -f "$audit_log"' EXIT HUP INT TERM

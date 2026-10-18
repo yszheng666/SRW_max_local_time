@@ -81,7 +81,7 @@ def verify(audit_path):
     rows = re.findall(
         r"'([^']+)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)", audit)
     requested = re.findall(r'^#print axioms (\S+)',
-                          (ROOT / 'formalization/SRWTightness/Audit.lean').read_text(), re.M)
+                          (ROOT / 'SRWTightness/Audit.lean').read_text(), re.M)
     require(Counter(name for name, _ in rows) == Counter(requested),
             'Audit does not cover exactly the current requested declarations')
     allowed = {'propext', 'Classical.choice', 'Quot.sound'}
@@ -100,7 +100,7 @@ def verify(audit_path):
         module = pending.pop()
         if module in seen:
             continue
-        path = ROOT / 'formalization' / (module.replace('.', '/') + '.lean')
+        path = ROOT / (module.replace('.', '/') + '.lean')
         require(path.exists(), f'Missing local imported module: {module}')
         seen.add(module)
         text = code_only(path.read_text())

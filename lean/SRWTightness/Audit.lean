@@ -1,3 +1,4 @@
+import SRWTightness.SourceMainLiteratureInputs
 import SRWTightness.SourceCommonLiteralEventComparison
 import SRWTightness.SourceCommonSignedGeometry
 import SRWTightness.SourceCommonLiteralPrefixError
@@ -6886,3 +6887,14 @@ import SRWTightness
 #print axioms SRWTightness.integral_boundedTime_le
 #print axioms SRWTightness.referenceMarkLaw
 #print axioms SRWTightness.independent_marks
+
+-- Literature-to-interface bridges (2026-10-18).
+#print axioms SRWTightness.gaussian_green_translation
+#print axioms SRWTightness.gaussian_green_maximum_translation
+#print axioms SRWTightness.ll_positive_harmonic_local
+#print axioms SRWTightness.positive_harmonic_relative_of_literature
+#print axioms SRWTightness.bdz_literature_field_eq_green
+#print axioms SRWTightness.latticeSquareInterior_translate
+#print axioms SRWTightness.bdz_sqrt_normalization
+#print axioms SRWTightness.bdz_dyadic_square_maximum_of_literature
+#print axioms SRWTightness.source_main_claims_from_literature

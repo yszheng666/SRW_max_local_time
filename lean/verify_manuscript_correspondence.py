@@ -11,7 +11,7 @@ DECLARATION = re.compile(
 
 
 def verify():
-    published = (ROOT / 'SRW_max_local_time.tex').read_text()
+    published = (ROOT.parent / 'SRW_max_local_time.tex').read_text()
     certified = (ROOT / 'source/SRW_max_local_time.tex').read_text()
     body = published[published.index(INTRO):]
     body, count = DECLARATION.subn('', body)

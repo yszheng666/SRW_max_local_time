@@ -1,3 +1,12 @@
+# Updated literature interfaces (2026-10-18)
+
+The current main entry is `source_main_claims_from_literature`. Its harmonic input is
+`LLPositiveHarmonicDifferenceInput` and its DGFF input is `BDZLiteratureDyadicMaximumInput`.
+The transformations to the older interfaces are now proved internally. The other four
+literature input families remain unchanged. See the [bridge report](LITERATURE_INTERFACE_BRIDGES_2026-10-18.md).
+
+The following scope description is retained for the previous main entry.
+
 # 最终依赖状态（2026-10-16）
 
 当前主结论的外部依赖仅为势核渐近、正调和相对估计、几何GW屏障上界、Raič凸集CLT、几何GW屏障下界、BDZ方格最大值上界。
