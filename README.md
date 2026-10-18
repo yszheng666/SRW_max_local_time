@@ -1,5 +1,9 @@
 # Tightness of the maximum local time of planar simple random walk
 
+**Yushu Zheng** — School of Mathematics, Shanghai University of Finance and Economics (yszheng666@gmail.com).
+
+**Xinyi Li** — Beijing International Center for Mathematical Research, Peking University (xinyili@bicmr.pku.edu.cn).
+
 LaTeX manuscript on tightness and quantitative tail bounds for the maximum local time of planar simple random walk.
 
 For the maximum visit count $M_n$ before step $n$, the main theorem gives tightness of

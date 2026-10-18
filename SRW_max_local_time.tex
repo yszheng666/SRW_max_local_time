@@ -28,9 +28,27 @@
 \patchcmd{\@maketitle}{\global\topskip42\p@\relax}{\global\topskip0\p@\relax}{}{%
   \PackageError{SRW-max-local-time}{Cannot adjust title placement}{Check the amsart version.}}
 \makeatother
-\hypersetup{pdftitle={Tightness of the maximum local time of planar simple random walk},pdfsubject={Probability theory; random walk; maximum local time}}
+\hypersetup{pdftitle={Tightness of the maximum local time of planar simple random walk},pdfauthor={Yushu Zheng; Xinyi Li},pdfsubject={Probability theory; random walk; maximum local time}}
 \title[Maximum local time of planar simple random walk]{Tightness of the maximum local time of planar simple random walk}
-\author{}
+\DeclareRobustCommand{\authormark}[1]{\textsuperscript{\MakeLowercase{#1}}}
+\author[Y. Zheng]{Yushu Zheng\authormark{1}}
+\author[X. Li]{Xinyi Li\authormark{2}}
+\newcommand{\frontaffiliations}{%
+  \par\vspace{8pt}
+  \begingroup
+  \normalfont\footnotesize\centering
+  \hypersetup{urlcolor=black}
+  \textsuperscript{1}\textit{School of Mathematics,
+  Shanghai University of Finance and Economics}\par
+  \href{mailto:yszheng666@gmail.com}{\textnormal{yszheng666@gmail.com}}\par\vspace{5pt}
+  \textsuperscript{2}\textit{Beijing International Center for Mathematical Research,
+  Peking University}\par
+  \href{mailto:xinyili@bicmr.pku.edu.cn}{\textnormal{xinyili@bicmr.pku.edu.cn}}\par
+  \endgroup}
+\makeatletter
+\apptocmd{\@setauthors}{\frontaffiliations}{}{%
+  \PackageError{SRW-max-local-time}{Cannot place affiliations on the first page}{Check the amsart version.}}
+\makeatother
 \date{}
 \begin{document}
 \begin{abstract}
