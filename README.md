@@ -1,6 +1,6 @@
 # Tightness of the maximum local time of planar simple random walk
 
-**Yushu Zheng** — School of Mathematics, Shanghai University of Finance and Economics (yszheng666@gmail.com).
+**Yushu Zheng** — School of Mathematics, Shanghai University of Finance and Economics (zhengyushu@sufe.edu.cn).
 
 **Xinyi Li** — Beijing International Center for Mathematical Research, Peking University (xinyili@bicmr.pku.edu.cn).
 
