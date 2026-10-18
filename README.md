@@ -17,6 +17,12 @@ $$
 - [LaTeX manuscript](SRW_max_local_time.tex): the main file for Overleaf or a local LaTeX compiler.
 - [PDF of the checksum-bound manuscript](output/pdf/SRW_max_local_time.pdf): the archived verification copy, with a different publication layout.
 
+## Current status
+
+The current manuscript and accompanying conditional Lean 4 formalization are available in this repository. Further polishing of the manuscript and its exposition is planned.
+
+The authors thank OpenAI ChatGPT and Codex for assistance with proof exploration and drafting, manuscript preparation, and Lean development. Generative AI was used to produce the mathematical proof draft. The authors take responsibility for the mathematical content, its verification, and its exposition. The formalization retains six explicit literature input families; it does not constitute an independent human verification of every argument in the manuscript.
+
 ## Lean verification
 
 All Lean files and verification materials are grouped in **[lean/](lean/)**.
