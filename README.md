@@ -2,7 +2,7 @@
 
 **Xinyi Li** — Beijing International Center for Mathematical Research, Peking University (xinyili@bicmr.pku.edu.cn).
 
-**Yushu Zheng** — School of Mathematics, Shanghai University of Finance and Economics (zhengyushu@sufe.edu.cn).
+**Yushu Zheng** — School of Mathematics, Shanghai University of Finance and Economics (zhengyushu@mail.sufe.edu.cn).
 
 LaTeX manuscript on tightness and quantitative tail bounds for the maximum local time of planar simple random walk.
 
