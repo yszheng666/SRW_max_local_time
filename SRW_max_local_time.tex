@@ -28,22 +28,22 @@
 \patchcmd{\@maketitle}{\global\topskip42\p@\relax}{\global\topskip0\p@\relax}{}{%
   \PackageError{SRW-max-local-time}{Cannot adjust title placement}{Check the amsart version.}}
 \makeatother
-\hypersetup{pdftitle={Tightness of the maximum local time of planar simple random walk},pdfauthor={Yushu Zheng; Xinyi Li},pdfsubject={Probability theory; random walk; maximum local time}}
+\hypersetup{pdftitle={Tightness of the maximum local time of planar simple random walk},pdfauthor={Xinyi Li; Yushu Zheng},pdfsubject={Probability theory; random walk; maximum local time}}
 \title[Maximum local time of planar simple random walk]{Tightness of the maximum local time of planar simple random walk}
 \DeclareRobustCommand{\authormark}[1]{\textsuperscript{\MakeLowercase{#1}}}
-\author[Y. Zheng]{Yushu Zheng\authormark{1}}
-\author[X. Li]{Xinyi Li\authormark{2}}
+\author[X. Li]{Xinyi Li\authormark{1}}
+\author[Y. Zheng]{Yushu Zheng\authormark{2}}
 \newcommand{\frontaffiliations}{%
   \par\vspace{8pt}
   \begingroup
   \normalfont\footnotesize\centering
   \hypersetup{urlcolor=black}
-  \textsuperscript{1}\textit{School of Mathematics,
-  Shanghai University of Finance and Economics}\par
-  \href{mailto:zhengyushu@sufe.edu.cn}{\textnormal{zhengyushu@sufe.edu.cn}}\par\vspace{5pt}
-  \textsuperscript{2}\textit{Beijing International Center for Mathematical Research,
+  \textsuperscript{1}\textit{Beijing International Center for Mathematical Research,
   Peking University}\par
-  \href{mailto:xinyili@bicmr.pku.edu.cn}{\textnormal{xinyili@bicmr.pku.edu.cn}}\par
+  \href{mailto:xinyili@bicmr.pku.edu.cn}{\textnormal{xinyili@bicmr.pku.edu.cn}}\par\vspace{5pt}
+  \textsuperscript{2}\textit{School of Mathematics,
+  Shanghai University of Finance and Economics}\par
+  \href{mailto:zhengyushu@sufe.edu.cn}{\textnormal{zhengyushu@sufe.edu.cn}}\par
   \endgroup}
 \makeatletter
 \apptocmd{\@setauthors}{\frontaffiliations}{}{%
@@ -140,7 +140,7 @@ Section~\ref{sec:mainproofs} derives the main theorems from the two spatial esti
 \subsection{AI-assisted proof development and verification status}
 \label{subsec:ai-declaration}
 
-The authors thank OpenAI ChatGPT and Codex for assistance with exploring proof strategies, developing the proof draft, preparing the manuscript, and constructing the accompanying Lean~4 formalization. Generative AI was used to produce the mathematical proof draft. The authors take responsibility for the mathematical content, its verification, and its exposition.
+Generative AI tools were used to explore proof strategies, generate the mathematical proof draft, prepare the manuscript, and develop the accompanying Lean~4 formalization. The authors take responsibility for the mathematical content, its verification, and its exposition.
 
 The accompanying Lean~4 formalization proves the registered main tightness and tail claims conditional on six explicit literature input families; see Appendix~\ref{sec:formalization}. This formal acceptance does not constitute an independent human verification of every argument in the manuscript. The checksum-bound source is stored in \texttt{lean/source/}\allowbreak\texttt{SRW\_max\_local\_time.tex}; the publication version retains its mathematical body, with different front matter and this status statement. Further polishing of the manuscript and its exposition is planned.
 

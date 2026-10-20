@@ -1,8 +1,8 @@
 # Tightness of the maximum local time of planar simple random walk
 
-**Yushu Zheng** — School of Mathematics, Shanghai University of Finance and Economics (zhengyushu@sufe.edu.cn).
-
 **Xinyi Li** — Beijing International Center for Mathematical Research, Peking University (xinyili@bicmr.pku.edu.cn).
+
+**Yushu Zheng** — School of Mathematics, Shanghai University of Finance and Economics (zhengyushu@sufe.edu.cn).
 
 LaTeX manuscript on tightness and quantitative tail bounds for the maximum local time of planar simple random walk.
 
@@ -21,7 +21,7 @@ $$
 
 The current manuscript and accompanying conditional Lean 4 formalization are available in this repository. Further polishing of the manuscript and its exposition is planned.
 
-The authors thank OpenAI ChatGPT and Codex for assistance with proof exploration and drafting, manuscript preparation, and Lean development. Generative AI was used to produce the mathematical proof draft. The authors take responsibility for the mathematical content, its verification, and its exposition. The formalization retains six explicit literature input families; it does not constitute an independent human verification of every argument in the manuscript.
+Generative AI tools were used to explore proof strategies, generate the mathematical proof draft, prepare the manuscript, and develop the accompanying Lean formalization. The authors take responsibility for the mathematical content, its verification, and its exposition. The formalization retains six explicit literature input families; it does not constitute an independent human verification of every argument in the manuscript.
 
 ## Lean verification
 
